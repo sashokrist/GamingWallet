@@ -1,0 +1,14 @@
+C:\Users\alexa\GamingWallet\bin\Debug\net7.0\GamingWallet.exe
+C:\Users\alexa\GamingWallet\bin\Debug\net7.0\GamingWallet.deps.json
+C:\Users\alexa\GamingWallet\bin\Debug\net7.0\GamingWallet.runtimeconfig.json
+C:\Users\alexa\GamingWallet\bin\Debug\net7.0\GamingWallet.dll
+C:\Users\alexa\GamingWallet\bin\Debug\net7.0\GamingWallet.pdb
+C:\Users\alexa\GamingWallet\obj\Debug\net7.0\GamingWallet.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alexa\GamingWallet\obj\Debug\net7.0\GamingWallet.AssemblyInfoInputs.cache
+C:\Users\alexa\GamingWallet\obj\Debug\net7.0\GamingWallet.AssemblyInfo.cs
+C:\Users\alexa\GamingWallet\obj\Debug\net7.0\GamingWallet.csproj.CoreCompileInputs.cache
+C:\Users\alexa\GamingWallet\obj\Debug\net7.0\GamingWallet.dll
+C:\Users\alexa\GamingWallet\obj\Debug\net7.0\refint\GamingWallet.dll
+C:\Users\alexa\GamingWallet\obj\Debug\net7.0\GamingWallet.pdb
+C:\Users\alexa\GamingWallet\obj\Debug\net7.0\GamingWallet.genruntimeconfig.cache
+C:\Users\alexa\GamingWallet\obj\Debug\net7.0\ref\GamingWallet.dll
