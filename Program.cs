@@ -1,89 +1,64 @@
 ﻿using System;
 
-decimal balance = 0.0M; // Player starts with $0
+decimal balance = 0M;
+Random rng = new();
 
 while (true)
 {
-    // Show the current balance
-    Console.WriteLine($"Your current balance is ${balance}");
-
-    // Show the available actions
-    Console.WriteLine("What would you like to do?");
-    Console.WriteLine("1. Deposit money");
-    Console.WriteLine("2. Withdraw money");
-    Console.WriteLine("3. Play the game");
-    Console.WriteLine("4. Exit");
-
-    // Get the user's choice
+    Console.WriteLine($"Your current balance is ${balance}\n1. Deposit money\n2. Withdraw money\n3. Play the game\n4. Exit");
     string choice = Console.ReadLine();
 
     switch (choice)
     {
         case "1":
-            Console.WriteLine("How much would you like to deposit?");
-            decimal depositAmount = Decimal.Parse(Console.ReadLine());
-            balance += depositAmount;
+            Console.Write("Deposit amount: ");
+            balance += decimal.Parse(Console.ReadLine());
             break;
+
         case "2":
-            Console.WriteLine("How much would you like to withdraw?");
-            decimal withdrawAmount = Decimal.Parse(Console.ReadLine());
-            if (withdrawAmount > balance)
-            {
-                Console.WriteLine("Insufficient balance!");
-            }
-            else
-            {
-                balance -= withdrawAmount;
-            }
+            Console.Write("Withdraw amount: ");
+            decimal withdrawAmount = decimal.Parse(Console.ReadLine());
+            balance = (withdrawAmount > balance) ? balance : balance - withdrawAmount;
+            if (withdrawAmount > balance) Console.WriteLine("Not enough mopney in your balance!");
             break;
+
         case "3":
-            PlayGame(ref balance);
+            Play();
             break;
+
         case "4":
-            Console.WriteLine("Thanks for playing. Goodbye!");
+            Console.WriteLine("Goodbye!");
             return;
+
         default:
             Console.WriteLine("Invalid choice.");
             break;
     }
 }
 
-void PlayGame(ref decimal balance)
+void Play()
 {
-    Console.WriteLine("How much would you like to bet? (Between $1 and $10)");
-    decimal betAmount = Decimal.Parse(Console.ReadLine());
+    Console.Write("Bet amount (Between $1 and $10): ");
+    decimal bet = decimal.Parse(Console.ReadLine());
 
-    if (betAmount < 1 || betAmount > 10)
+    if (bet < 1 || bet > 10 || bet > balance)
     {
-        Console.WriteLine("Invalid bet amount. Try again.");
+        Console.WriteLine("Invalid bet amount, bet must be Between $1 and $10. Try again.");
         return;
     }
 
-    if (betAmount > balance)
-    {
-        Console.WriteLine("Insufficient balance to place the bet!");
-        return;
-    }
-
-    // Determine the outcome of the game
-    Random rng = new Random();
-    decimal winAmount = 0;
     double outcome = rng.NextDouble();
+    decimal win = 0;
 
-    if (outcome < 0.5) // 50% chance of losing
+    if (outcome >= 0.5)
+    {
+        win = (outcome < 0.9) ? bet * 2 : bet * (2 + (decimal)(rng.NextDouble() * 8));
+        Console.WriteLine($"You won! Win amount: ${win}");
+    }
+    else
     {
         Console.WriteLine("You lost the bet.");
     }
-    else if (outcome < 0.9) // 40% chance of winning up to x2
-    {
-        winAmount = betAmount * 2;
-        Console.WriteLine($"You won! Your win amount is ${winAmount}");
-    }
-    else // 10% chance of winning between x2 and x10
-    {
-        winAmount = betAmount * (2 + (decimal)(rng.NextDouble() * 8));
-        Console.WriteLine($"Jackpot! Your win amount is ${winAmount}");
-    }
 
-    balance = balance - betAmount + winAmount;
+    balance += win - bet;
 }
